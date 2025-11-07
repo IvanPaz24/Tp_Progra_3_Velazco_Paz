@@ -1,8 +1,13 @@
 import express from "express";
 // const express = require("express");
-import  sequelize  from "./db.js";
-import { Producto } from "./Producto.js";
+import  sequelize  from "./database/config.js";
+import { Producto } from "./models/Productos.js";
 import path from "path";
+import { exec } from 'child_process';
+import { fileURLToPath } from 'url';
+
+// __dirname equivalent for ES modules
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const PORT = 3000;
 const app = express();
@@ -26,42 +31,44 @@ app.get("/productos", async (req, res) => {
 });
 
 // Servir página principal
-// app.get("/", (req, res) => {
-//   res.sendFile(path.resolve("./index_produc.html"));
-// });
-
-app.post("/nombre", (res, req) =>{
-  const btn = res.body;
-
-  btn.document.getElementById("btnIngresar").addEventListener( "click", () => {
-    console.log("ingreso");
-    
-//   if (ingresoNombre()) {
-//     // window.location.href = "index_produc.html";
-// //       res.sendFile(path.resolve("./index_cliente.html/index_produc.html"));
-//     console.log("Ingreso el nombre")
-
-//   }
-//   else{
-//     alert("Ingrese su nombre");
-//   }
-    
-})
-})
-// document.getElementById("btnIngresar").addEventListener( "click", () => {
-//   if (ingresoNombre()) {
-//     // window.location.href = "index_produc.html";
-// //       res.sendFile(path.resolve("./index_cliente.html/index_produc.html"));
-//     console.log("Ingreso el nombre")
-
-//   }
-//   else{
-//     alert("Ingrese su nombre");
-//   }
-    
-// })
 app.get("/", (req, res) => {
- res.sendFile(path.resolve("./index_cliente.html"));
+   res.sendFile(path.resolve("./index_produc.html"));
+ });
+
+// Servir archivos estáticos desde la carpeta `views` (y así poder
+// acceder a /index_produc.html, /index_cliente.html, etc.)
+app.use(express.static(path.join(__dirname, 'views')));
+
+// Servir la carpeta public para CSS/JS/imagenes referenciadas como /public/...
+// Servir 'public' en la raíz para poder usar rutas como /css/... y /js/...
+app.use(express.static(path.join(__dirname, 'public')));
+// También mantener el prefijo /public por compatibilidad
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
+app.get("/", (req, res) => {
+  // Enviar la página principal desde views
+  res.sendFile(path.join(__dirname, 'views', 'index_cliente.html'));
 });
 
-app.listen(PORT, () => console.log("Servidor en http://localhost:3000"));
+function openUrlInBrowser(url) {
+  try {
+    const platform = process.platform;
+    if (platform === 'win32') {
+      // start requires a title argument; empty string used
+      exec(`start "" "${url}"`);
+    } else if (platform === 'darwin') {
+      exec(`open "${url}"`);
+    } else {
+      exec(`xdg-open "${url}"`);
+    }
+  } catch (err) {
+    console.error('No se pudo abrir el navegador automáticamente:', err);
+  }
+}
+
+app.listen(PORT, () => {
+  console.log("Servidor en http://localhost:3000");
+  // Abrir directamente la vista cliente al arrancar
+  const url = `http://localhost:${PORT}/index_cliente.html`;
+  openUrlInBrowser(url);
+});
