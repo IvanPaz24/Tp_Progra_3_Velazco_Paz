@@ -1,0 +1,65 @@
+body {
+    background-image: url("../img/background_img.png");
+    background-size: contain;     
+    background-repeat: no-repeat; 
+    background-position: center center; 
+    background-color: #000;       
+    height: 100vh;               
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    position: relative;
+    overflow: hidden;
+}
+
+header{
+    display: flex;
+    align-content: space-between;
+}
+
+#ingreso{
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 30px 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    text-align: center;
+    width: 300px;
+}
+
+
+
+button{
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    background: #3b5998;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 8px;
+} 
+
+label{
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #444;
+}
+
+input{
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 1px solid #aaa;
+}
+
+h1{
+    margin-bottom: 20px;
+    color: #333;
+}

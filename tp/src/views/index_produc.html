@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda</title>
+    <link rel="stylesheet" href="../public/css/tienda.css">
+</head>
+<body>
+    <header>
+        <h1>Tienda</h1>
+        <div id="btnCarrito">
+            <button>
+                <img src="carrito.png" alt="Carrito" width="50">
+            </button>
+        </div>
+    </header>
+    
+    <main id="catalogo">
+        <div id="divRemeras">
+            <h1>Remeras</h1>
+            <div id="remeras">
+
+            </div>
+        </div>
+        
+        <div id="divPantalones">
+            <h1>Pantalones</h1>
+            <div div id="pantones">
+
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        fetch("/productos")
+        .then(res => res.json())
+        .then(data => {
+            const contenedor = document.getElementById("remeras");
+            data.forEach(p => {
+            const div = document.createElement("div");
+            div.innerHTML = `
+                <h3>${p.nombre}</h3>
+                <img src="${p.imagen}" width="120">
+                <p>Precio: $${p.precio}</p>
+            `;
+            contenedor.appendChild(div);
+            });
+        });
+  </script>
+</body>
+</html>
