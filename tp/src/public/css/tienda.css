@@ -10,16 +10,24 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
-  background-color: #222;
-  color: white;
+  background-color: #fae1ff;
+  color: rgb(0, 0, 0);
 }
 
-#btnCarrito button{
-    cursor: pointer;
-    border-radius: 40%;
-   
+#btnCarrito {
+  background-color: transparent; 
+  border: none;                   
+  cursor: pointer;
+  padding: 0;                     
 }
 
+#btnCarrito img {
+  transition: transform 0.2s ease-in-out;
+}
+
+#btnCarrito:hover img {
+  transform: scale(1.1);          
+}
 
 #catalogo {
   display: flex;
@@ -71,7 +79,7 @@ header {
   background-color: #005f73;
 }
 
-/* ======== Carrito ======== */
+/* Carrito */
 #listaCarrito {
   display: flex;
   flex-wrap: wrap;
@@ -109,16 +117,16 @@ header {
 
 
 #listaCarrito img {
-  width: 170px;         /* tamaño fijo */
-  height: 170px;        /* tamaño fijo */
-  object-fit: contain;  /* ajusta la imagen sin recortarla */
+  width: 170px;         
+  height: 170px;        
+  object-fit: contain;  
   border-radius: 8px;
-  background-color: #fff; /* opcional, mejora contraste si hay fondo transparente */
+  background-color: #fff;
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
 
-/* ======== Controles de cantidad ======== */
+/* controles de cantidad */
 .cantidad-control {
   display: flex;
   align-items: center;
@@ -139,7 +147,6 @@ header {
   transition: background-color 0.2s;
 }
 
-/* Botón restar (rojo) */
 .cantidad-control .btnRestar {
   background-color: #e63946;
 }
@@ -148,7 +155,7 @@ header {
   background-color: #b91c1c;
 }
 
-/* Botón sumar (verde) */
+
 .cantidad-control .btnSumar {
   background-color: #2a9d8f;
 }
@@ -172,7 +179,7 @@ header {
 }
 
 .btnAgregar {
-  background-color: #2a9d8f; /* verde */
+  background-color: #2a9d8f; 
   color: white;
   border: none;
   padding: 8px 12px;
@@ -186,7 +193,7 @@ header {
 }
 
 .btnQuitar {
-  background-color: #e63946; /* rojo */
+  background-color: #e63946; 
   color: white;
   border: none;
   padding: 8px 12px;
