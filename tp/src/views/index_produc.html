@@ -1,53 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda</title>
-    <link rel="stylesheet" href="../public/css/tienda.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda</title>
+  <link rel="stylesheet" href="../public/css/tienda.css">
 </head>
 <body>
-    <header>
-        <h1>Tienda</h1>
-        <div id="btnCarrito">
-            <button>
-                <img src="carrito.png" alt="Carrito" width="50">
-            </button>
-        </div>
-    </header>
-    
-    <main id="catalogo">
-        <div id="divRemeras">
-            <h1>Remeras</h1>
-            <div id="remeras">
+  <header>
+    <h1>Tienda</h1>
+    <div>
+      <button id="btnCarrito">
+        <img src="../public/img/carrito.png" alt="Carrito" width="50">
+      </button>
+    </div>
+  </header>
 
-            </div>
-        </div>
-        
-        <div id="divPantalones">
-            <h1>Pantalones</h1>
-            <div div id="pantones">
+  <main id="catalogo">
+    <section id="divRemeras">
+      <h2>Remeras</h2>
+      <div id="remeras"></div>
+    </section>
 
-            </div>
-        </div>
-
-    </main>
-
-    <script>
-        fetch("/productos")
-        .then(res => res.json())
-        .then(data => {
-            const contenedor = document.getElementById("remeras");
-            data.forEach(p => {
-            const div = document.createElement("div");
-            div.innerHTML = `
-                <h3>${p.nombre}</h3>
-                <img src="${p.imagen}" width="120">
-                <p>Precio: $${p.precio}</p>
-            `;
-            contenedor.appendChild(div);
-            });
-        });
-  </script>
+    <section id="divPantalones">
+      <h2>Pantalones</h2>
+      <div id="pantalones"></div>
+    </section>
+  </main>
+  
+  <script src="../public/js/tienda.js" defer></script>
 </body>
 </html>

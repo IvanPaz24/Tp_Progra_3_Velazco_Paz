@@ -19,8 +19,9 @@ sequelize.sync({ force: true }).then(async () => {
 
   // Insertar productos
   await Producto.bulkCreate([ 
-    { nombre: "Remera", precio: 5000, imagen: "remera.jpg" },
-    // { nombre: "Pantalón", precio: 8000, imagen: "/img/pantalon1.jpg" },
+    { nombre: "Remera Roja", precio: 5000, categoria:"remera", imagen: "/public/img/remera roja.jpg" },
+    { nombre: "Remera Azul", precio: 5000, categoria:"remera", imagen: "/public/img/remera azul.jpg" },
+    { nombre: "Pantalón Negro", precio: 8000, categoria:"pantalon", imagen: "/public/img/pantalon negro.jpg" },
   ]);
 });
 

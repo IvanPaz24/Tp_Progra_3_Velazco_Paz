@@ -10,6 +10,10 @@ export const Producto = sequelize.define("Producto", {
     type: DataTypes.FLOAT,
     allowNull: false,
   },
+  categoria:{
+    type: DataTypes.STRING,
+    allowNull: true,  
+  },
   imagen: {
     type: DataTypes.STRING, // guarda la ruta del archivo local
     allowNull: false,

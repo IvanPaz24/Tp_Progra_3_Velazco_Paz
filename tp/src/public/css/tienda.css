@@ -1,29 +1,200 @@
-body{
-    background-color: rgb(245, 241, 234);
-    grid-template-columns: 200px auto;
-    grid-template-rows: 50px auto;
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-header{
-    grid-row: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    /* grid-column: 1/3; */
-    outline: solid #000 1px;
-    padding: 0 20px;
-    /* display: grid; */
-    /* grid-template-columns: 1fr; */
-    /* grid-template-rows: 100%; */
-    /* align-items: cente; */
-    /* align-content: ; */
-    /* display: flex;
-    align-items: center;
-    align-content: flex-end; */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #222;
+  color: white;
 }
 
 #btnCarrito button{
     cursor: pointer;
     border-radius: 40%;
-    /* background-image: url("carrito.png"); */
+   
+}
+
+
+#catalogo {
+  display: flex;
+  flex-direction: column; 
+  gap: 10px;
+  padding: 20px;
+}
+
+/* Cada categoría */
+#divRemeras, #divPantalones {
+  width: 100%;
+}
+
+#remeras, #pantalones, #listaCarrito {
+  display: flex;
+  flex-wrap: wrap;           
+  justify-content: flex-start; 
+  gap: 20px;                 
+  padding: 20px;
+}
+
+
+.producto {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  width: 180px;
+  text-align: center;
+  background-color: #fafafa;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.producto:hover {
+  transform: scale(1.05);
+}
+
+.btnAgregar, #vaciarCarrito {
+  background-color: #008CBA;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btnAgregar:hover, #vaciarCarrito:hover {
+  background-color: #005f73;
+}
+
+/* ======== Carrito ======== */
+#listaCarrito {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+#resumenCarrito {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+#total {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+#vaciarCarrito {
+  background-color: #008CBA;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#vaciarCarrito:hover {
+  background-color: #005f73;
+}
+
+
+#listaCarrito img {
+  width: 170px;         /* tamaño fijo */
+  height: 170px;        /* tamaño fijo */
+  object-fit: contain;  /* ajusta la imagen sin recortarla */
+  border-radius: 8px;
+  background-color: #fff; /* opcional, mejora contraste si hay fondo transparente */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+
+/* ======== Controles de cantidad ======== */
+.cantidad-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.cantidad-control button {
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* Botón restar (rojo) */
+.cantidad-control .btnRestar {
+  background-color: #e63946;
+}
+
+.cantidad-control .btnRestar:hover {
+  background-color: #b91c1c;
+}
+
+/* Botón sumar (verde) */
+.cantidad-control .btnSumar {
+  background-color: #2a9d8f;
+}
+
+.cantidad-control .btnSumar:hover {
+  background-color: #21867a;
+}
+
+.cantidad-control span {
+  font-weight: bold;
+  font-size: 1.1rem;
+  width: 25px;
+  text-align: center;
+}
+
+.botones-producto {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.btnAgregar {
+  background-color: #2a9d8f; /* verde */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btnAgregar:hover {
+  background-color: #21867a;
+}
+
+.btnQuitar {
+  background-color: #e63946; /* rojo */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btnQuitar:hover {
+  background-color: #b91c1c;
 }
