@@ -3,37 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda</title>
+    <title>Login Admin</title>
     <link rel="stylesheet" href="../public/css/admin.css">
 </head>
 
 <body>
     <main>
-        <header>
-            <!-- <p>Titulo</p> -->
-            <div id="ingreso">
-                <h1>Bienvenido</h1>
-                <label for="inputNombre">Ingrese su correo:</label>
-                <input type="text" id="inputNombre">
-                <label for="inputNombre">Ingrese su contraseña:</label>
-                <input type="password" id="inputPass">
-                <!-- <br> -->
-                <button id="btnIngresar">Ingresar</button>
-                <a href="index_cliente.html">Cancelar</a>
-            </div>
-        </header>
-        <footer></footer>
+        <div id="ingreso">
+            <h1>Bienvenido</h1>
+
+            <label for="inputCorreo">Ingrese su correo:</label>
+            <input type="email" id="inputCorreo">
+
+            <label for="inputPass">Ingrese su contraseña:</label>
+            <input type="password" id="inputPass">
+
+            <button id="btnIngresar">Ingresar</button>
+            <button id="btnAutocompletar" style="background: #4CAF50; color: white;">
+                Acceso rápido
+            </button>
+
+            <br><br>
+            <a href="../views/index_cliente.html">Cancelar</a>
+        </div>
     </main>
+
     <script src="../public/js/loginAdmin.js" defer></script>
-</body>
-</html>
 </body>
 </html>

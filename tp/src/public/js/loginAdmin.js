@@ -1,14 +1,24 @@
-// tp/src/public/js/cliente.js
+document.getElementById("btnIngresar").addEventListener("click", async () => {
+    const correo = document.getElementById("inputCorreo").value;
+    const contraseña = document.getElementById("inputPass").value;
 
-// Si usas defer, el DOM ya está listo cuando se ejecuta este script,
-// así que no hace falta esperar a DOMContentLoaded.
-const btn = document.getElementById('btnIngresar');
-if (btn) {
-  btn.addEventListener('click', () => {
-    // Hacer Validación mail y contraseña:
-    
+    const res = await fetch("/usuario/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ correo, contraseña })
+    });
 
-    // Redirige a la página de productos (ruta relativa para poder abrir el HTML directamente)
-    window.location.href = 'index_produc.html';
-  });
-}
+    const data = await res.json();
+
+    if (data.mensaje === "Acceso permitido") {
+        window.location.href = "index_dashboard.ejs";
+    } else {
+        alert(data.mensaje);
+    }
+});
+
+// Botón para autocompletar
+document.getElementById("btnAutocompletar").addEventListener("click", () => {
+    document.getElementById("inputCorreo").value = "admin@admin.com";
+    document.getElementById("inputPass").value = "admin123";
+});

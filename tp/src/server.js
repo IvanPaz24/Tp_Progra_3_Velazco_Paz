@@ -3,6 +3,8 @@ import sequelize from "./database/config.js";
 import path from "path";
 import { exec } from "child_process";
 import { fileURLToPath } from "url";
+import userRoutes from "./routes/user.routes.js";
+import bcrypt from "bcrypt";
 
 // Importar rutas
 import productosRoutes from "./routes/productosRoutes.js";
@@ -25,45 +27,37 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 // Rutas API
 app.use("/productos", productosRoutes);
 app.use("/ticket", ticketRoutes);
+app.use("/usuario", userRoutes);
 
-// -----------------------------
-//   Rutas HTML CORRECTAS
-// -----------------------------
-
+//   Rutas HTML 
 // Home (cliente)
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "index_cliente.html"));
 });
 
-app.get("/productos-view", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "index_produc.html"));
-});
 
-// --- Añadir esta ruta para que GET /index_produc.html funcione ---
 app.get("/index_produc.html", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "index_produc.html"));
 });
 
-app.get("/carrito-view", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "index_produc.html"));
-});
-
-// --- Añadir esta ruta para que GET /index_produc.html funcione ---
 app.get("/index_carrito.html", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "index_carrito.html"));
 });
 
+app.get("/index_admin.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "index_admin.html"));
+});
+
+app.get("/views/index_cliente.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "index_cliente.html"));
+});
+
+app.get("/views/index_admin.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "index_admin.html"));
+});
 
 
-
-// Vista productos (HTML)
-// app.get("/", (req, res) => {
-//   res.sendFile(path.join(__dirname, "views", "index_produc.html"));
-// });
-
-// -----------------------------
 //   Sincronización DB
-// -----------------------------
 sequelize.sync({ force: true }).then(async () => {
   console.log("Base sincronizada");
 
@@ -74,11 +68,23 @@ sequelize.sync({ force: true }).then(async () => {
     { nombre: "Remera Azul", precio: 5000, categoria: "remera", imagen: "/img/remera azul.jpg" },
     { nombre: "Pantalón Negro", precio: 8000, categoria: "pantalon", imagen: "/img/pantalon negro.jpg" }
   ]);
+
+   // Insertar administrador al iniciar la BD
+  const { User } = await import("./models/User.js");
+
+  const passwordEncriptada = await bcrypt.hash("admin123", 10);
+
+  await User.create({
+    correo: "admin@admin.com",
+    contraseña: passwordEncriptada,
+    rol: "admin"
+  });
+
+  console.log("Administrador por defecto creado");
+
 });
 
-// -----------------------------
 //   Abrir navegador
-// -----------------------------
 function openUrl(url) {
   const command = process.platform === "win32"
     ? `start "" "${url}"`
@@ -89,9 +95,7 @@ function openUrl(url) {
   exec(command);
 }
 
-// -----------------------------
 //   Servidor
-// -----------------------------
 app.listen(PORT, () => {
   console.log(`Servidor en http://localhost:${PORT}`);
   openUrl(`http://localhost:${PORT}`);

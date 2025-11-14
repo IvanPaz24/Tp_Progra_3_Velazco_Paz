@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket</title>
+</head>
+<body>
+   <h1>Ticket de Compra</h1>
+
+  <% if (datos && datos.length > 0) { %>
+    <% let total = 0; %>
+    <% for (let index = 0; index < datos.length; index++) { %>
+      <div>
+        <p>--------------------------------------------</p>
+        <p><strong>ID:</strong> <%= datos[index].id %></p>
+        <p><strong>Nombre:</strong> <%= datos[index].nombre %></p>
+        <p><strong>Precio:</strong> $<%= datos[index].precio %></p>
+        <p><strong>Cantidad:</strong> <%= datos[index].cantidad %></p>
+      </div>
+      <% total += datos[index].precio * datos[index].cantidad%>
+      <% } %>
+      <p>--------------------------------------------</p>
+      <h2>Total: $<%= total %></h2>
+  <% } else { %>
+    <p>No hay productos en el ticket.</p>
+  <% } %>
+  <% if (esVista === true) { %>
+
+    <button onclick="window.location.href='/ticket/pdf'">Descargar Ticket</button>
+    <button>Salir</button>
+    
+  <% } %>
+  <script>
+  // const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  // const btnPDF = document.querySelector("#btnDescargarPDF");
+
+  // btnPDF.addEventListener("click", () => {
+  //   if (carrito.length === 0) {
+  //     alert("No hay productos en el carrito");
+  //     return;
+  //   }
+
+  //   // Codificamos el carrito como parámetro en la URL
+  //   const url = "/ticket/pdf?carrito=" + encodeURIComponent(JSON.stringify(carrito));
+  //   window.location.href = url;
+  // });
+</script>
+</body>
+</html>
