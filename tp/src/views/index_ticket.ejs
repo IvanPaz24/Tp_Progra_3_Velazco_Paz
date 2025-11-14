@@ -28,24 +28,9 @@
   <% if (esVista === true) { %>
 
     <button onclick="window.location.href='/ticket/pdf'">Descargar Ticket</button>
-    <button>Salir</button>
+    <button id="salirTicket">Salir</button>
     
   <% } %>
-  <script>
-  // const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-  // const btnPDF = document.querySelector("#btnDescargarPDF");
-
-  // btnPDF.addEventListener("click", () => {
-  //   if (carrito.length === 0) {
-  //     alert("No hay productos en el carrito");
-  //     return;
-  //   }
-
-  //   // Codificamos el carrito como parámetro en la URL
-  //   const url = "/ticket/pdf?carrito=" + encodeURIComponent(JSON.stringify(carrito));
-  //   window.location.href = url;
-  // });
-</script>
+  <script src="../public/js/ticket.js"></script>
 </body>
 </html>

@@ -44,6 +44,10 @@ app.get("/index_carrito.html", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "index_carrito.html"));
 });
 
+app.get("/index_cliente.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "index_cliente.html"));
+});
+
 app.get("/index_admin.html", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "index_admin.html"));
 });
