@@ -68,7 +68,7 @@ function agregarAlCarrito(id) {
   }
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
-  alert(`✅ ${producto.nombre} agregado al carrito`);
+  alert(`${producto.nombre} agregado al carrito`);
 }
 
 
@@ -79,13 +79,13 @@ function quitarDelCarrito(id) {
   const producto = carrito.find(p => p.id == id);
 
   if (!producto) {
-    alert("⚠️ Ese producto no está en el carrito");
+    alert("Ese producto no está en el carrito");
     return;
   }
 
   carrito = carrito.filter(p => p.id != id);
   localStorage.setItem("carrito", JSON.stringify(carrito));
-  alert(`❌ ${producto.nombre} eliminado del carrito`);
+  alert(`${producto.nombre} eliminado del carrito`);
 }
 
 

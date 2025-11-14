@@ -5,6 +5,9 @@ import { Producto } from "./models/Productos.js";
 import path from "path";
 import { exec } from 'child_process';
 import { fileURLToPath } from 'url';
+import ejs from "ejs";
+import puppeteer from "puppeteer";
+import { log } from "console";
 
 // __dirname equivalent for ES modules
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -66,6 +69,67 @@ function openUrlInBrowser(url) {
     console.error('No se pudo abrir el navegador automáticamente:', err);
   }
 }
+
+app.set("view engine", "ejs");
+
+// Ruta para mostrar los datos
+let carritoTemporal = [];
+app.post("/ticket", (req, res) => {
+  carritoTemporal = req.body.carrito; // guardamos el carrito en memoria
+  res.render("index_ticket", { 
+    datos: carritoTemporal,
+    esVista: true
+  }); 
+  // console.log(carritoTemporal);
+});
+// app.get("/ticket", (req, res) => {
+//   const { carrito } = req.query; // vienen del navegador
+//   res.render("index_ticket", { datos: carrito }); // enviamos los datos a EJS
+// });
+
+// let esVista = true;
+
+app.get("/ticket/pdf", async (req, res) => {
+  try {
+    if (!carritoTemporal || carritoTemporal.length === 0) {
+      return res.send("No hay productos en el carrito");
+    }
+
+    const html = await ejs.renderFile(
+      path.join(__dirname, "views", "index_ticket.ejs"),
+      { datos: carritoTemporal,
+        esVista: false
+      }
+    );
+
+    // carritoTemporal.esVista = false;
+
+    const browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    await page.setContent(html, { waitUntil: "networkidle0" });
+
+    const pdfBuffer = await page.pdf({
+      format: "A4",
+      printBackground: true,
+      margin: { top: "20px", 
+        bottom: "20px", 
+        left: "20px", 
+        right: "20px" }
+    });
+
+    await browser.close();
+
+    res.set({
+      "Content-Type": "application/pdf",
+      "Content-Disposition": "attachment; filename=ticket.pdf",
+    });
+
+    res.send(pdfBuffer);
+  } catch (error) {
+    console.error("Error generando el PDF:", error);
+    res.status(500).send("Error generando el PDF");
+  }
+});
 
 app.listen(PORT, () => {
   console.log("Servidor en http://localhost:3000");

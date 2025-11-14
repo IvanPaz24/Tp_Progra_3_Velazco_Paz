@@ -68,3 +68,24 @@ function cambiarCantidad(id, delta) {
   localStorage.setItem("carrito", JSON.stringify(carrito));
   mostrarCarrito();
 }
+
+const btn = document.getElementById('finCompra');
+if (btn) {
+  btn.addEventListener('click', async () => {
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  // Envío el carrito al servidor
+  const res = await fetch("/ticket", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ carrito }) // lo enviamos dentro de un objeto
+  });
+
+  
+  const html = await res.text();
+  document.open();
+  document.write(html);
+  document.close();
+    // window.location.href = 'index_.ticket.html';
+  });
+}

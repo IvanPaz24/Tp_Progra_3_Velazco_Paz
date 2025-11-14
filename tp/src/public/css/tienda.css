@@ -65,7 +65,7 @@ header {
   transform: scale(1.05);
 }
 
-.btnAgregar, #vaciarCarrito {
+.btnAgregar, #vaciarCarrito ,#finCompra {
   background-color: #008CBA;
   color: white;
   border: none;
