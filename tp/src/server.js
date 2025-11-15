@@ -24,7 +24,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/public", express.static(path.join(__dirname, "public")));
 
-// Rutas API
+//   Rutas API
 app.use("/productos", productosRoutes);
 app.use("/ticket", ticketRoutes);
 app.use("/usuario", userRoutes);
@@ -32,32 +32,7 @@ app.use("/usuario", userRoutes);
 //   Rutas HTML 
 // Home (cliente)
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "index_cliente.html"));
-});
-
-
-app.get("/index_produc.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "index_produc.html"));
-});
-
-app.get("/index_carrito.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "index_carrito.html"));
-});
-
-app.get("/index_cliente.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "index_cliente.html"));
-});
-
-app.get("/index_admin.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "index_admin.html"));
-});
-
-app.get("/views/index_cliente.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "index_cliente.html"));
-});
-
-app.get("/views/index_admin.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "index_admin.html"));
+  res.sendFile(path.join(__dirname, "public", "index_cliente.html"));
 });
 
 
