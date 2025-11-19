@@ -1,0 +1,37 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+}
+
+.dark-theme {
+    --bg-color: #181818;
+    --text-color: #ffffff;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#themeToggle {
+    /* display: flex; 
+    justify-content: flex-end; */
+    position: fixed;
+    bottom: 20px;   /* distancia desde abajo */
+    right: 20px;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    transition: 0.3s;
+    z-index: 9999; 
+
+  /* text-align: right; */
+}
+
+#themeToggle:hover {
+    opacity: 0.8;
+}

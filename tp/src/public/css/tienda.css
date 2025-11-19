@@ -10,15 +10,16 @@ header {
   justify-content: space-between ;
   align-items: center;
   padding: 15px 30px;
-  background-color: #fae1ff;
-  color: rgb(0, 0, 0);
+  background-color: #000000;
+  color: white;
 }
 
 #btnCarrito {
-  background-color: transparent; 
+  background-color: white; 
   border: none;                   
   cursor: pointer;
-  padding: 0;                     
+  padding: 0;
+  border-radius: 5px;                     
 }
 
 #btnCarrito img {
@@ -59,6 +60,7 @@ header {
   background-color: #fafafa;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   transition: transform 0.2s;
+  color: black !important; 
 }
 
 .producto:hover {
@@ -312,3 +314,33 @@ header {
   /* justify-content: space-between ; */
   text-align: center;
 }
+
+/* :root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+}
+
+.dark-theme {
+  --bg-color: #181818;
+  --text-color: #ffffff;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#themeToggle {
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background: var(--text-color);
+  color: var(--bg-color);
+  border: none;
+  transition: 0.3s;
+}
+
+#themeToggle:hover {
+  opacity: 0.8;
+} */

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ticket</title>
     <link rel="stylesheet" href="../public/css/ticket.css">
+    <link rel="stylesheet" href="../public/css/tema.css">
 </head>
 <body>
   <% if (esVista === true) { %>
@@ -17,7 +18,7 @@
         <h1>Ticket de Compra</h1>
         <h2>Thomas Velazco y Ivan Paz</h2>
       </div>
-      <a href="./index_produc.html"> Volver a la tienda</a>
+      <a href="./index_produc.html" style="color: white;"> Volver a la tienda</a>
     </header>
   <% } %>
   
@@ -55,9 +56,12 @@
           <button class="btn-salir" id="salirTicket">Salir</button>
         </div>
       <% } %>
-  
       </div>
   </main>
+  
+  <button id="themeToggle">🌙</button>
+
   <script src="../public/js/ticket.js"></script>
+  <script src="../public/js/tema.js"></script>
 </body>
 </html>
