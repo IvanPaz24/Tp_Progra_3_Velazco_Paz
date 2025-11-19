@@ -7,7 +7,7 @@ body {
 
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between ;
   align-items: center;
   padding: 15px 30px;
   background-color: #fae1ff;
@@ -299,13 +299,16 @@ header {
 .btnConfirmar:hover { background: #4caf50; }
 .btnCancelar:hover { background: #f54d4d; }
 
-header {
+
+#headerAdmin {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  /* justify-content: space-between ; */
   align-items: center;
 }
 
-header > div:nth-child(2) {
+#headerAdmin > div:nth-child(2) {
   justify-self: center;
+  /* justify-content: space-between ; */
   text-align: center;
 }

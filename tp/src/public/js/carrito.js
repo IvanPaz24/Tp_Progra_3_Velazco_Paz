@@ -82,8 +82,20 @@ if (btn) {
     body: JSON.stringify({ carrito , clienteNombre}) // lo enviamos dentro de un objeto
   });
 
-  
   const html = await res.text();
+  
+  let total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+
+  await fetch("/ventas", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      nombre: clienteNombre,
+      total
+    })
+  });
+
+  
   document.open();
   document.write(html);
   document.close();

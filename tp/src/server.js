@@ -10,6 +10,7 @@ import methodOverride from "method-override";
 // Importar rutas
 import productosRoutes from "./routes/productosRoutes.js";
 import ticketRoutes from "./routes/ticketRoutes.js";
+import ventasRoutes from "./routes/ventasRouters.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -32,6 +33,7 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 app.use("/productos", productosRoutes);
 app.use("/ticket", ticketRoutes);
 app.use("/usuario", userRoutes);
+app.use("/ventas", ventasRoutes);
 
 
 //   Rutas HTML 
