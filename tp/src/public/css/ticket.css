@@ -1,0 +1,78 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 15px 30px;
+background-color: #fae1ff;
+color: rgb(0, 0, 0);
+}
+
+.ticket-container {
+    display: flex;
+    justify-content: center;   
+    align-items: flex-start;   
+    padding-top: 40px;
+    width: 100%;
+}
+  
+.ticket {
+    width: 350px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.ticket p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.divider {
+    margin: 10px 0;
+    border-bottom: 1px dashed #444;
+}
+
+.ticket h2 {
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.btn-descargar {
+    background-color: #4CAF50;
+    color: white;
+}
+.btn-descargar:hover {
+    background-color: #45a049;
+}
+
+.btn-salir {
+    background-color: #d9534f;
+    color: white;
+}
+.btn-salir:hover {
+    background-color: #c9302c;
+}

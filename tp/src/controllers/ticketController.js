@@ -6,12 +6,15 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 let carritoTemporal = [];
-
+let nombreCliente = "";
 export const crearTicket = (req, res) => {
   carritoTemporal = req.body.carrito;
+  nombreCliente = req.body.clienteNombre;
+  // console.log(nombreCliente);
 
   res.render("index_ticket", {
     datos: carritoTemporal,
+    nombreCliente: nombreCliente,
     esVista: true
   });
 };
@@ -24,7 +27,7 @@ export const generarPDF = async (req, res) => {
 
     const html = await ejs.renderFile(
       path.join(__dirname, "../views/index_ticket.ejs"),
-      { datos: carritoTemporal, esVista: false }
+      { datos: carritoTemporal, esVista: false , nombreCliente: nombreCliente}
     );
 
     const browser = await puppeteer.launch({ headless: true });
@@ -34,7 +37,12 @@ export const generarPDF = async (req, res) => {
     const pdfBuffer = await page.pdf({
       format: "A4",
       printBackground: true,
-      margin: { top: "20px", bottom: "20px", left: "20px", right: "20px" }
+      margin: {
+        top: "20mm",
+        bottom: "20mm",
+        left: "20mm",
+        right: "20mm",
+      }
     });
 
     await browser.close();

@@ -11,5 +11,9 @@ if (btn) {
 
     // Redirige a la página de productos (ruta relativa para poder abrir el HTML directamente)
     window.location.href = 'index_produc.html';
+
+    localStorage.setItem('clienteNombre', nombre);
+    console.log(nombre);
+    
   });
 }

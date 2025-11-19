@@ -4,33 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ticket</title>
+    <link rel="stylesheet" href="../public/css/ticket.css">
 </head>
 <body>
-   <h1>Ticket de Compra</h1>
-
-  <% if (datos && datos.length > 0) { %>
-    <% let total = 0; %>
-    <% for (let index = 0; index < datos.length; index++) { %>
-      <div>
-        <p>--------------------------------------------</p>
-        <p><strong>ID:</strong> <%= datos[index].id %></p>
-        <p><strong>Nombre:</strong> <%= datos[index].nombre %></p>
-        <p><strong>Precio:</strong> $<%= datos[index].precio %></p>
-        <p><strong>Cantidad:</strong> <%= datos[index].cantidad %></p>
-      </div>
-      <% total += datos[index].precio * datos[index].cantidad%>
-      <% } %>
-      <p>--------------------------------------------</p>
-      <h2>Total: $<%= total %></h2>
-  <% } else { %>
-    <p>No hay productos en el ticket.</p>
-  <% } %>
   <% if (esVista === true) { %>
-
-    <button onclick="window.location.href='/ticket/pdf'">Descargar Ticket</button>
-    <button id="salirTicket">Salir</button>
-    
+    <header>
+      <div>
+        <img src="../public/img/logo.png" alt="logo Velaz" width="85">
+        <h1>Velaz</h1>
+      </div>
+      <div>
+        <h1>Ticket de Compra</h1>
+        <h2>Thomas Velazco y Ivan Paz</h2>
+      </div>
+      <a href="./index_produc.html"> Volver a la tienda</a>
+    </header>
   <% } %>
+  
+  <main class="ticket-container">
+
+    <div class="ticket">
+  
+      <% if (datos && datos.length > 0) { %>
+        <% let total = 0; %>
+        <h1>Velaz</h1>
+        <p><strong>Cliente:</strong> <%= nombreCliente %></p>
+  
+        <% datos.forEach(item => { %>
+          <div class="divider"></div>
+  
+          <p><strong>ID:</strong> <%= item.id %></p>
+          <p><strong>Nombre:</strong> <%= item.nombre %></p>
+          <p><strong>Precio:</strong> $<%= item.precio %></p>
+          <p><strong>Cantidad:</strong> <%= item.cantidad %></p>
+  
+          <% total += item.precio * item.cantidad; %>
+        <% }) %>
+  
+        <div class="divider"></div>
+        <h2>Total: $<%= total %></h2>
+  
+      <% } else { %>
+        <p>No hay productos en el ticket.</p>
+      <% } %>
+  
+      <% if (esVista === true) { %>
+        <div class="btn-container">
+          <button class="btn-descargar" onclick="window.location.href='/ticket/pdf'">Descargar Ticket</button>
+  
+          <button class="btn-salir" id="salirTicket">Salir</button>
+        </div>
+      <% } %>
+  
+      </div>
+  </main>
   <script src="../public/js/ticket.js"></script>
 </body>
 </html>

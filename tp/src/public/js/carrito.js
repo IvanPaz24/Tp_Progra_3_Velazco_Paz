@@ -73,12 +73,13 @@ const btn = document.getElementById('finCompra');
 if (btn) {
   btn.addEventListener('click', async () => {
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const clienteNombre = localStorage.getItem('clienteNombre') || [];
 
   // Envío el carrito al servidor
   const res = await fetch("/ticket", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ carrito }) // lo enviamos dentro de un objeto
+    body: JSON.stringify({ carrito , clienteNombre}) // lo enviamos dentro de un objeto
   });
 
   
