@@ -1,0 +1,57 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("modalConfirmacion");
+  const modalTitulo = document.getElementById("modalTitulo");
+  const modalMensaje = document.getElementById("modalMensaje");
+  const btnCancelar = document.getElementById("btnCancelar");
+  const btnConfirmar = document.getElementById("btnConfirmar");
+
+  let accionPendiente = null; // guardará la acción PUT
+  let productoId = null;
+
+  // Evento global para capturar clicks en los botones
+  document.body.addEventListener("click", e => {
+    // Dar de baja
+    if (e.target.classList.contains("btnBaja")) {
+      e.preventDefault();
+      
+      productoId = e.target.closest("form").action.match(/productos\/(\d+)/)[1];
+      accionPendiente = "baja";
+
+      modalTitulo.textContent = "Dar de baja producto";
+      modalMensaje.textContent = "¿Está seguro que desea dar de baja este producto?";
+      modal.style.display = "flex";
+    }
+
+    // Reactivar
+    if (e.target.classList.contains("btnAlta")) {
+      e.preventDefault();
+
+      productoId = e.target.closest("form").action.match(/productos\/(\d+)/)[1];
+      accionPendiente = "alta";
+
+      modalTitulo.textContent = "Reactivar producto";
+      modalMensaje.textContent = "¿Está seguro que desea volver a activar este producto?";
+      modal.style.display = "flex";
+    }
+  });
+
+  // Cancelar cierra modal
+  btnCancelar.addEventListener("click", () => {
+    modal.style.display = "none";
+    accionPendiente = null;
+    productoId = null;
+  });
+
+  // Confirmar ejecuta la acción
+  btnConfirmar.addEventListener("click", async () => {
+    if (!accionPendiente || !productoId) return;
+
+    const url = `/productos/${productoId}/${accionPendiente}?_method=PUT`;
+
+    await fetch(url, {
+      method: "POST"
+    });
+
+    window.location.reload();
+  });
+});

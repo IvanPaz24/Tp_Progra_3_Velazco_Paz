@@ -1,51 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ticket</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/css/tienda.css">
+  <link rel="icon" href="/img/logo.png" type="image/png">
 </head>
+
 <body>
-   <h1>Ticket de Compra</h1>
 
-  <% if (datos && datos.length > 0) { %>
-    <% let total = 0; %>
-    <% for (let index = 0; index < datos.length; index++) { %>
-      <div>
-        <p>--------------------------------------------</p>
-        <p><strong>ID:</strong> <%= datos[index].id %></p>
-        <p><strong>Nombre:</strong> <%= datos[index].nombre %></p>
-        <p><strong>Precio:</strong> $<%= datos[index].precio %></p>
-        <p><strong>Cantidad:</strong> <%= datos[index].cantidad %></p>
+  <header>
+    <div>
+      <img src="/img/logo.png" alt="logo Velaz" width="85">
+      <h1>Velaz</h1>
+    </div>
+
+    <div>
+      <h1>Panel de Administración</h1>
+      <h2>Thomas Velazco y Iván Paz</h2>
+    </div>
+  </header>
+
+  <main id="catalogo">
+
+    <!-- Sección Remeras -->
+    <section id="divRemeras">
+      <h2>Remeras</h2>
+      <div id="remeras" class="productos-container">
+
+        <% productos.filter(p => p.categoria === "remera").forEach(p => { %>
+          <div class="producto <%= p.estado === 'inactivo' ? 'inactivo' : '' %>">
+            <h3><%= p.nombre %></h3>
+            <img src="<%= p.imagen %>" width="120">
+            <p>Precio: $<%= p.precio %></p>
+
+            <div class="botones-producto">
+
+              <!-- MODIFICAR siempre -->
+              <form action="/productos/<%= p.id %>?_method=PUT" method="POST">
+                <button type="submit" class="btnModificar">Modificar</button>
+              </form>
+
+              <% if (p.estado === "activo") { %>
+
+                <!-- BAJA LÓGICA -->
+                <form action="/productos/<%= p.id %>/baja?_method=PUT" method="POST">
+                  <button type="submit" class="btnBaja">Dar de baja</button>
+                </form>
+
+              <% } else { %>
+
+                <!-- ALTA LOGICA -->
+                <form action="/productos/<%= p.id %>/alta?_method=PUT" method="POST">
+                  <button type="submit" class="btnAlta">Reactivar</button>
+                </form>
+
+              <% } %>
+
+            </div>
+
+          </div>
+        <% }) %>
+
       </div>
-      <% total += datos[index].precio * datos[index].cantidad%>
-      <% } %>
-      <p>--------------------------------------------</p>
-      <h2>Total: $<%= total %></h2>
-  <% } else { %>
-    <p>No hay productos en el ticket.</p>
-  <% } %>
-  <% if (esVista === true) { %>
+    </section>
 
-    <button onclick="window.location.href='/ticket/pdf'">Descargar Ticket</button>
-    <button>Salir</button>
-    
-  <% } %>
-  <script>
-  // const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    <!-- Sección Pantalones -->
+    <section id="divPantalones">
+      <h2>Pantalones</h2>
+      <div id="pantalones" class="productos-container">
 
-  // const btnPDF = document.querySelector("#btnDescargarPDF");
+        <% productos.filter(p => p.categoria === "pantalon").forEach(p => { %>
+          <div class="producto <%= p.estado === 'inactivo' ? 'inactivo' : '' %>">
+            <h3><%= p.nombre %></h3>
+            <img src="<%= p.imagen %>" width="120">
+            <p>Precio: $<%= p.precio %></p>
 
-  // btnPDF.addEventListener("click", () => {
-  //   if (carrito.length === 0) {
-  //     alert("No hay productos en el carrito");
-  //     return;
-  //   }
+            <div class="botones-producto">
 
-  //   // Codificamos el carrito como parámetro en la URL
-  //   const url = "/ticket/pdf?carrito=" + encodeURIComponent(JSON.stringify(carrito));
-  //   window.location.href = url;
-  // });
-</script>
+              <!-- MODIFICAR siempre -->
+              <form action="/productos/<%= p.id %>?_method=PUT" method="POST">
+                <button type="submit" class="btnModificar">Modificar</button>
+              </form>
+
+              <% if (p.estado === "activo") { %>
+
+                <!-- BAJA LÓGICA -->
+                <form action="/productos/<%= p.id %>/baja?_method=PUT" method="POST">
+                  <button type="submit" class="btnBaja">Dar de baja</button>
+                </form>
+
+              <% } else { %>
+
+                <!-- ALTA LOGICA -->
+                <form action="/productos/<%= p.id %>/alta?_method=PUT" method="POST">
+                  <button type="submit" class="btnAlta">Reactivar</button>
+                </form>
+
+              <% } %>
+
+            </div>
+
+          </div>
+        <% }) %>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== MODAL DE CONFIRMACIÓN ========== -->
+  <div id="modalConfirmacion" class="modal">
+    <div class="modal-content">
+      <h2 id="modalTitulo"></h2>
+      <p id="modalMensaje"></p>
+
+      <div class="modal-botones">
+        <button id="btnCancelar" class="btnCancelar">Cancelar</button>
+        <button id="btnConfirmar" class="btnConfirmar">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script del modal -->
+  <script src="/js/dashboardModal.js" defer></script>
+
 </body>
 </html>

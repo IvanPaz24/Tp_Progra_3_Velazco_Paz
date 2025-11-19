@@ -11,7 +11,7 @@ document.getElementById("btnIngresar").addEventListener("click", async () => {
     const data = await res.json();
 
     if (data.mensaje === "Acceso permitido") {
-        window.location.href = "index_dashboard.ejs";
+        window.location.href = "/productos/dashboard";
     } else {
         alert(data.mensaje);
     }

@@ -205,3 +205,107 @@ header {
 .btnQuitar:hover {
   background-color: #b91c1c;
 }
+
+
+
+.btnAlta {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btnAlta:hover {
+  background-color: #449d48;
+}
+
+.btnBaja {
+  background-color: #f54d4d;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btnBaja:hover {
+  background-color: #f54d4d;
+}
+
+.btnModificar {
+  background-color: #4a37fa;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btnModificar:hover {
+  background-color: #4a37fa;
+}
+
+/* Fondo oscuro */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000;
+  left: 0; 
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Caja del modal */
+.modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  width: 360px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+/* Botones */
+.modal-botones {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btnCancelar {
+  background: #f54d4d;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.btnConfirmar {
+  background: #4caf50;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.btnConfirmar:hover { background: #4caf50; }
+.btnCancelar:hover { background: #f54d4d; }
+
+header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+}
+
+header > div:nth-child(2) {
+  justify-self: center;
+  text-align: center;
+}

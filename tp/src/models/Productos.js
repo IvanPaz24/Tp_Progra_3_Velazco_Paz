@@ -14,6 +14,10 @@ export const Producto = sequelize.define("Producto", {
     type: DataTypes.STRING,
     allowNull: true,  
   },
+  estado: {
+  type: DataTypes.STRING,
+  defaultValue: "activo"   // otros valores: "inactivo"
+  },
   imagen: {
     type: DataTypes.STRING, // guarda la ruta del archivo local
     allowNull: false,

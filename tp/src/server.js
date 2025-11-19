@@ -5,6 +5,7 @@ import { exec } from "child_process";
 import { fileURLToPath } from "url";
 import userRoutes from "./routes/user.routes.js";
 import bcrypt from "bcrypt";
+import methodOverride from "method-override";
 
 // Importar rutas
 import productosRoutes from "./routes/productosRoutes.js";
@@ -15,6 +16,8 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 
 // Motor de vistas
 app.set("view engine", "ejs");
@@ -25,9 +28,11 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/public", express.static(path.join(__dirname, "public")));
 
 //   Rutas API
+
 app.use("/productos", productosRoutes);
 app.use("/ticket", ticketRoutes);
 app.use("/usuario", userRoutes);
+
 
 //   Rutas HTML 
 // Home (cliente)
@@ -79,3 +84,6 @@ app.listen(PORT, () => {
   console.log(`Servidor en http://localhost:${PORT}`);
   openUrl(`http://localhost:${PORT}`);
 });
+
+
+
