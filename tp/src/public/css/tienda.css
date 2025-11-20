@@ -344,3 +344,81 @@ body {
 #themeToggle:hover {
   opacity: 0.8;
 } */
+
+
+.agregar-container {
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+.btnAgregarProducto {
+  background-color: #007BFF;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.btnAgregarProducto:hover {
+  background-color: #0056b3;
+}
+
+.formAgregarProducto {
+    width: 40%;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+
+  .alert {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+
+  .error {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+
+  form label {
+    font-weight: bold;
+    margin-top: 15px;
+    display: block;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #aaa;
+  }
+
+  .botones-form {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .producto img {
+  width: 150px;          /* Ancho fijo */
+  height: 150px;         /* Alto fijo */
+  object-fit: cover;     /* Recorta para mantener proporciones */
+  border-radius: 8px;    /* Opcional estético */
+  display: block;
+  margin: 0 auto 10px auto;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar Producto</title>
+  <link rel="stylesheet" href="/css/tienda.css">
+   <link rel="icon" href="/img/logo.png" type="image/png">
+</head>
+
+    <body>
+
+    <header class="headerAdmin">
+    <div>
+        <img src="/img/logo.png" width="85">
+        <h1>Velaz</h1>
+    </div>
+    <div>  
+        <h1>Agregar Producto</h1>
+        <h2>Thomas Velazco y Iván Paz</h2> 
+    </div>
+
+    <div>
+    <a href="/productos/dashboard" class="btnVolver" style="color: rgb(0, 0, 0);">Volver</a>
+    </div>  
+    </header>
+
+        <main class="formAgregarProducto">
+
+        <% if (mensaje) { %>
+            <div class="alert success"><%= mensaje %></div>
+        <% } %>
+
+        <% if (error) { %>
+            <div class="alert error"><%= error %></div>
+        <% } %>
+
+            <form action="/productos" method="POST" enctype="multipart/form-data">
+
+                <label>Nombre del producto:</label>
+                <input type="text" name="nombre" required>
+
+                <label>Precio:</label>
+                <input type="number" name="precio" required min="1">
+
+                <label>Imagen:</label>
+                <input type="file" name="imagen" accept="image/*" required>
+
+                <label>Categoría:</label>
+                <select name="categoria" required>
+                <option value="">Seleccione categoría</option>
+                <option value="remera">Remera</option>
+                <option value="pantalon">Pantalón</option>
+                </select>
+
+                <div class="botones-form">
+                <button type="submit" class="btnConfirmar">Agregar</button>
+                <a href="/productos/dashboard" class="btnCancelar">Cancelar</a>
+                </div>
+
+            </form>
+        </main>
+
+    </body>
+</html>

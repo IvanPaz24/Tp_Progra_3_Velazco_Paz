@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Producto</title>
+  <link rel="stylesheet" href="/css/tienda.css">
+   <link rel="icon" href="/img/logo.png" type="image/png">
+</head>
+
+<body>
+
+  <header class="headerAdmin">
+    <div>
+        <img src="/img/logo.png" width="85">
+        <h1>Velaz</h1>
+    </div>
+    <div>
+        <h1>Modificar Producto</h1>
+        <h2>Thomas Velazco y Iván Paz</h2>
+    </div>
+    
+    
+    <a href="/productos/dashboard" class="btnVolver" style="color: rgb(0, 0, 0);">Volver</a>
+  </header>
+
+  <main class="form-container">
+
+    <% if (error) { %>
+      <p class="error"><%= error %></p>
+    <% } %>
+
+    <form action="/productos/<%= producto.id %>/editar" method="POST" enctype="multipart/form-data" class="formProducto">
+
+      <label>Nombre:</label>
+      <input type="text" name="nombre" value="<%= producto.nombre %>" required>
+
+      <label>Precio:</label>
+      <input type="number" name="precio" value="<%= producto.precio %>" required>
+
+      <label>Categoría:</label>
+      <select name="categoria" required>
+        <option value="remera" <%= producto.categoria === "remera" ? "selected" : "" %> >Remera</option>
+        <option value="pantalon" <%= producto.categoria === "pantalon" ? "selected" : "" %> >Pantalón</option>
+      </select>
+
+      <label>Imagen actual:</label>
+      <img src="<%= producto.imagen %>" width="150">
+
+      <label>Subir nueva imagen (opcional):</label>
+      <input type="file" name="imagen">
+
+      <button type="submit" class="btnAgregar">Guardar cambios</button>
+      <a href="/productos/dashboard" class="btnCancelar">Cancelar</a>
+
+    </form>
+  </main>
+
+</body>
+</html>

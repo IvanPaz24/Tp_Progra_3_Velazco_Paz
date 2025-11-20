@@ -27,6 +27,11 @@ app.set("views", path.join(__dirname, "views"));
 // Carpeta pública
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/public", express.static(path.join(__dirname, "public")));
+// carpeta uploads
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/img/productos", express.static(path.join(__dirname, "uploads")));
+
+
 
 //   Rutas API
 
@@ -50,9 +55,18 @@ sequelize.sync({ force: true }).then(async () => {
   const { Producto } = await import("./models/Productos.js");
 
   await Producto.bulkCreate([
+    // Remeras
     { nombre: "Remera Roja", precio: 5000, categoria: "remera", imagen: "/img/remera roja.jpg" },
-    { nombre: "Remera Azul", precio: 5000, categoria: "remera", imagen: "/img/remera azul.jpg" },
-    { nombre: "Pantalón Negro", precio: 8000, categoria: "pantalon", imagen: "/img/pantalon negro.jpg" }
+    { nombre: "Remera Azul", precio: 6000, categoria: "remera", imagen: "/img/remera azul.jpg" },
+    { nombre: "Remera Negra", precio: 7000, categoria: "remera", imagen: "/img/remera negra.jpg" },
+    { nombre: "Remera Vino", precio: 9000, categoria: "remera", imagen: "/img/remera vino.jpg" },
+    { nombre: "Remera Blanca", precio: 3000, categoria: "remera", imagen: "/img/remera blanca.jpg" },
+    // Pantalones
+    { nombre: "Pantalon Rojo", precio: 11000, categoria: "pantalon", imagen: "/img/pantalon rojo.jpg" },
+    { nombre: "Pantalon Azul", precio: 13000, categoria: "pantalon", imagen: "/img/pantalon azul.jpg" },
+    { nombre: "Pantalon Negro", precio: 9000, categoria: "pantalon", imagen: "/img/pantalon negro.jpg" },
+    { nombre: "Pantalon Vino", precio: 17000, categoria: "pantalon", imagen: "/img/pantalon vino.jpg" },
+    { nombre: "Pantalon Blanco", precio: 19000, categoria: "pantalon", imagen: "/img/pantalon blanco.jpg" }
   ]);
 
    // Insertar administrador al iniciar la BD

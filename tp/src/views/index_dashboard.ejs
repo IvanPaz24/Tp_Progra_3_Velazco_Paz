@@ -20,11 +20,20 @@
       <h1>Panel de Administración</h1>
       <h2>Thomas Velazco y Iván Paz</h2>
     </div>
+    <div>
+    <a href="../public/index_admin.html" class="btnVolver" style="color: rgb(255, 255, 255);">Volver</a>
+    </div>  
   </header>
 
   <main id="catalogo">
 
-    <!-- Sección Remeras -->
+    <!-- agregar producto -->
+      <div class="agregar-container">
+        <a href="/productos/agregar" class="btnAgregarProducto"> Agregar Producto</a>
+      </div>
+
+
+    <!-- remeras -->
     <section id="divRemeras">
       <h2>Remeras</h2>
       <div id="remeras" class="productos-container">
@@ -37,21 +46,21 @@
 
             <div class="botones-producto">
 
-              <!-- MODIFICAR siempre -->
-              <form action="/productos/<%= p.id %>?_method=PUT" method="POST">
+              <!-- modificar producto -->
+              <form action="/productos/<%= p.id %>/editar" method="GET">
                 <button type="submit" class="btnModificar">Modificar</button>
               </form>
 
               <% if (p.estado === "activo") { %>
 
-                <!-- BAJA LÓGICA -->
+                <!-- baja producto -->
                 <form action="/productos/<%= p.id %>/baja?_method=PUT" method="POST">
                   <button type="submit" class="btnBaja">Dar de baja</button>
                 </form>
 
               <% } else { %>
 
-                <!-- ALTA LOGICA -->
+                <!-- alta producto -->
                 <form action="/productos/<%= p.id %>/alta?_method=PUT" method="POST">
                   <button type="submit" class="btnAlta">Reactivar</button>
                 </form>
@@ -66,7 +75,7 @@
       </div>
     </section>
 
-    <!-- Sección Pantalones -->
+    <!-- pantalones -->
     <section id="divPantalones">
       <h2>Pantalones</h2>
       <div id="pantalones" class="productos-container">
@@ -79,21 +88,22 @@
 
             <div class="botones-producto">
 
-              <!-- MODIFICAR siempre -->
-              <form action="/productos/<%= p.id %>?_method=PUT" method="POST">
+              <!-- modificar producto -->
+              <form action="/productos/<%= p.id %>/editar" method="GET">
                 <button type="submit" class="btnModificar">Modificar</button>
               </form>
 
+
               <% if (p.estado === "activo") { %>
 
-                <!-- BAJA LÓGICA -->
+                <!-- baja producto -->
                 <form action="/productos/<%= p.id %>/baja?_method=PUT" method="POST">
                   <button type="submit" class="btnBaja">Dar de baja</button>
                 </form>
 
               <% } else { %>
 
-                <!-- ALTA LOGICA -->
+                <!-- alta producto -->
                 <form action="/productos/<%= p.id %>/alta?_method=PUT" method="POST">
                   <button type="submit" class="btnAlta">Reactivar</button>
                 </form>
@@ -110,7 +120,7 @@
 
   </main>
 
-  <!-- ========== MODAL DE CONFIRMACIÓN ========== -->
+  <!-- modal confirmacion -->
   <div id="modalConfirmacion" class="modal">
     <div class="modal-content">
       <h2 id="modalTitulo"></h2>
