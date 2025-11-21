@@ -32,6 +32,10 @@ header {
 
 #catalogo {
   display: flex;
+  align-items: center;
+  text-align: center;
+  align-self: center;
+  /* justify-content: space-evenly; */
   flex-direction: column; 
   gap: 10px;
   padding: 20px;
@@ -42,10 +46,16 @@ header {
   width: 100%;
 }
 
+.titulos {
+  text-align: center;
+  margin-bottom: 15px;
+
+}
+
 #remeras, #pantalones, #listaCarrito {
   display: flex;
   flex-wrap: wrap;           
-  justify-content: flex-start; 
+  justify-content: center; 
   gap: 20px;                 
   padding: 20px;
 }
@@ -67,19 +77,6 @@ header {
   transform: scale(1.05);
 }
 
-.btnAgregar, #vaciarCarrito ,#finCompra {
-  background-color: #008CBA;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.btnAgregar:hover, #vaciarCarrito:hover {
-  background-color: #005f73;
-}
 
 /* Carrito */
 #listaCarrito {
@@ -104,18 +101,28 @@ header {
   margin-bottom: 15px;
 }
 
-#vaciarCarrito {
+.paginacion {
+  display: flex;
+  justify-content: center;   
+  gap: 15px;                 
+  margin: 30px auto;
+} 
+
+#vaciarCarrito , #finCompra , #btnSiguiente , #btnAnterior , #Salir {
+  margin-top: 10px;
   background-color: #008CBA;
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  width: 150px;
 }
 
-#vaciarCarrito:hover {
+
+#vaciarCarrito:hover #finCompra:hover, #btnSiguiente:hover , #btnAnterior:hover , #Salir:hover {
   background-color: #005f73;
-}
+} 
 
 
 #listaCarrito img {
@@ -174,10 +181,11 @@ header {
 }
 
 .botones-producto {
-  display: flex;
-  flex-direction: column;
+  display: flex !important;
+  flex-direction: column !important;
   gap: 8px;
   margin-top: 10px;
+  width: 100% !important;
 }
 
 .btnAgregar {
@@ -208,45 +216,67 @@ header {
   background-color: #b91c1c;
 }
 
+/* .botones-producto {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+} */
+
 
 
 .btnAlta {
-  background-color: #4caf50;
+  background-color: #2a9d8f; 
   color: white;
   border: none;
-  padding: 6px 12px;
+  padding: 8px 12px;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.2s;
+  /* display: flex !important;
+  flex-direction: column !important;   
+  gap: 8px!important;
+  margin-top: 10px !important; */
+  width: 100% !important;
+  /* margin-top: 10px;
+  display: flex; */
+  /* gap: 8px; */
+  /* flex-direction: column; */
+  /* gap: 8px;
+  margin-top: 10px; */
 }
 
 .btnAlta:hover {
-  background-color: #449d48;
-}
+  background-color: #21867a;
+} 
 
 .btnBaja {
-  background-color: #f54d4d;
+  background-color: #e63946;
   color: white;
   border: none;
-  padding: 6px 12px;
+  padding: 8px 12px;
   border-radius: 5px;
   cursor: pointer;
+  width: 100% !important;
 }
 
 .btnBaja:hover {
-  background-color: #f54d4d;
+  background-color: #b91c1c;
 }
 
 .btnModificar {
   background-color: #4a37fa;
   color: white;
   border: none;
-  padding: 6px 12px;
-  border-radius: 5px;
+  padding: 8px 12px;
+  border-radius: 5px;;
   cursor: pointer;
+  width: 100% !important;
 }
 
 .btnModificar:hover {
   background-color: #4a37fa;
+  
 }
 
 /* Fondo oscuro */
@@ -278,19 +308,20 @@ header {
   margin-top: 20px;
   display: flex;
   justify-content: space-around;
+  
 }
 
 .btnCancelar {
   background: #f54d4d;
   border: none;
-  padding: 8px 18px;
+  padding: 8px 12px;
   border-radius: 6px;
   color: white;
   cursor: pointer;
 }
 
 .btnConfirmar {
-  background: #4caf50;
+  background-color: #2a9d8f;
   border: none;
   padding: 8px 18px;
   border-radius: 6px;
@@ -298,7 +329,7 @@ header {
   cursor: pointer;
 }
 
-.btnConfirmar:hover { background: #4caf50; }
+.btnConfirmar:hover { background: #2a9d8f; }
 .btnCancelar:hover { background: #f54d4d; }
 
 
@@ -314,36 +345,6 @@ header {
   /* justify-content: space-between ; */
   text-align: center;
 }
-
-/* :root {
-  --bg-color: #ffffff;
-  --text-color: #000000;
-}
-
-.dark-theme {
-  --bg-color: #181818;
-  --text-color: #ffffff;
-}
-
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
-}
-
-#themeToggle {
-  cursor: pointer;
-  padding: 10px 15px;
-  border-radius: 8px;
-  background: var(--text-color);
-  color: var(--bg-color);
-  border: none;
-  transition: 0.3s;
-}
-
-#themeToggle:hover {
-  opacity: 0.8;
-} */
 
 
 .agregar-container {
@@ -368,53 +369,59 @@ body {
 }
 
 .formAgregarProducto {
-    width: 40%;
-    margin: 40px auto;
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  }
+  width: 40%;
+  margin: 40px auto;
+  background: white !important; 
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2) !important;
+     
+}
 
-  .alert {
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    text-align: center;
-    font-weight: bold;
-  }
+.vistaModificar {
+  color: #000000 !important;
+}
 
-  .success {
-    background-color: #d4edda;
-    color: #155724;
-  }
 
-  .error {
-    background-color: #f8d7da;
-    color: #721c24;
-  }
+.alert {
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+}
 
-  form label {
-    font-weight: bold;
-    margin-top: 15px;
-    display: block;
-  }
+.success {
+  background-color: #d4edda;
+  color: #155724;
+}
 
-  input, select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 6px;
-    border: 1px solid #aaa;
-  }
+.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
 
-  .botones-form {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
+form label {
+  font-weight: bold;
+  margin-top: 15px;
+  display: block;
+}
 
-  .producto img {
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+}
+
+.botones-form {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.producto img {
   width: 150px;          /* Ancho fijo */
   height: 150px;         /* Alto fijo */
   object-fit: cover;     /* Recorta para mantener proporciones */

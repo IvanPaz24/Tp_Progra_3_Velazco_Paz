@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carrito</title>
   <link rel="stylesheet" href="../public/css/tienda.css">
-  <link rel="stylesheet" href="../public/css/tema.css">
+  <link rel="stylesheet" href="/css/tema.css">
   <link rel="icon" href="/img/logo.png" type="image/png">
 
 </head>
@@ -28,12 +28,26 @@
       <h2 id="total"></h2>
       <button id="vaciarCarrito">Vaciar carrito</button>
       <button id="finCompra">Finalizar Compra</button>
+      <button id="Salir">Salir</button>
     </div>
   </main>
+
+  <div id="modalConfirmacion" class="modal">
+    <div class="modal-content">
+      <h2 id="modalTitulo"></h2>
+      <p id="modalMensaje"></p>
+
+      <div class="modal-botones">
+        <button id="btnCancelar" class="btnCancelar">Cancelar</button>
+        <button id="btnConfirmar" class="btnConfirmar">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
   
   <button id="themeToggle">🌙</button>
 
   <script src="../public/js/carrito.js" defer></script>
-  <script src="../public/js/tema.js" defer></script>
+  <script src="/js/tema.js" defer></script>
 </body>
 </html>

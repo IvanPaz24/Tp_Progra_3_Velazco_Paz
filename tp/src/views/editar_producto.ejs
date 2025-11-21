@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Editar Producto</title>
   <link rel="stylesheet" href="/css/tienda.css">
-   <link rel="icon" href="/img/logo.png" type="image/png">
+  <link rel="stylesheet" href="/css/tema.css">
+  <link rel="icon" href="/img/logo.png" type="image/png">
 </head>
 
 <body>
@@ -24,7 +25,7 @@
     <a href="/productos/dashboard" class="btnVolver" style="color: rgb(0, 0, 0);">Volver</a>
   </header>
 
-  <main class="form-container">
+  <main class="formAgregarProducto">
 
     <% if (error) { %>
       <p class="error"><%= error %></p>
@@ -32,29 +33,35 @@
 
     <form action="/productos/<%= producto.id %>/editar" method="POST" enctype="multipart/form-data" class="formProducto">
 
-      <label>Nombre:</label>
-      <input type="text" name="nombre" value="<%= producto.nombre %>" required>
+      <div class="vistaModificar" >
 
-      <label>Precio:</label>
-      <input type="number" name="precio" value="<%= producto.precio %>" required>
-
-      <label>Categoría:</label>
-      <select name="categoria" required>
-        <option value="remera" <%= producto.categoria === "remera" ? "selected" : "" %> >Remera</option>
-        <option value="pantalon" <%= producto.categoria === "pantalon" ? "selected" : "" %> >Pantalón</option>
-      </select>
-
-      <label>Imagen actual:</label>
-      <img src="<%= producto.imagen %>" width="150">
-
-      <label>Subir nueva imagen (opcional):</label>
-      <input type="file" name="imagen">
-
-      <button type="submit" class="btnAgregar">Guardar cambios</button>
-      <a href="/productos/dashboard" class="btnCancelar">Cancelar</a>
+        <label>Nombre:</label>
+        <input type="text" name="nombre" value="<%= producto.nombre %>" required>
+  
+        <label>Precio:</label>
+        <input type="number" name="precio" value="<%= producto.precio %>" required>
+  
+        <label>Categoría:</label>
+        <select name="categoria" required>
+          <option value="remera" <%= producto.categoria === "remera" ? "selected" : "" %> >Remera</option>
+          <option value="pantalon" <%= producto.categoria === "pantalon" ? "selected" : "" %> >Pantalón</option>
+        </select>
+  
+        <label>Imagen actual:</label>
+        <img src="<%= producto.imagen %>" width="150">
+  
+        <label>Subir nueva imagen (opcional):</label>
+        <input type="file" name="imagen">
+  
+        <button type="submit" class="btnAgregar">Guardar cambios</button>
+        <a href="/productos/dashboard" class="btnCancelar">Cancelar</a>
+      </div>
 
     </form>
   </main>
 
+  <button id="themeToggle">🌙</button>
+
+  <script src="/js/tema.js"></script>
 </body>
 </html>

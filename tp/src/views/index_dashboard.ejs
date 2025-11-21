@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
   <link rel="stylesheet" href="/css/tienda.css">
+  <link rel="stylesheet" href="/css/tema.css">
   <link rel="icon" href="/img/logo.png" type="image/png">
 </head>
 
@@ -48,21 +49,21 @@
 
               <!-- modificar producto -->
               <form action="/productos/<%= p.id %>/editar" method="GET">
-                <button type="submit" class="btnModificar">Modificar</button>
+                <button type="submit" class="btnFull btnModificar">Modificar</button>
               </form>
 
               <% if (p.estado === "activo") { %>
 
                 <!-- baja producto -->
                 <form action="/productos/<%= p.id %>/baja?_method=PUT" method="POST">
-                  <button type="submit" class="btnBaja">Dar de baja</button>
+                  <button type="submit" class="btnFull btnBaja">Dar de baja</button>
                 </form>
 
               <% } else { %>
 
                 <!-- alta producto -->
                 <form action="/productos/<%= p.id %>/alta?_method=PUT" method="POST">
-                  <button type="submit" class="btnAlta">Reactivar</button>
+                  <button type="submit" class="btnFull btnAlta">Reactivar</button>
                 </form>
 
               <% } %>
@@ -133,8 +134,10 @@
     </div>
   </div>
 
+  <button id="themeToggle">🌙</button>
+
   <!-- Script del modal -->
   <script src="../public/js/dashboardModal.js" defer></script>
-
+  <script src="../public/js/tema.js"></script>
 </body>
 </html>

@@ -11,26 +11,30 @@ document.addEventListener("DOMContentLoaded", async () => {
     const res = await fetch("/productos");
     const data = await res.json();
 
-    const remeras = data.filter(p => p.categoria === "remera");
-    const pantalones = data.filter(p => p.categoria === "pantalon");
+    // Filtrar categorías
+    listaRemeras = data.filter(p => p.categoria === "remera");
+    listaPantalones = data.filter(p => p.categoria === "pantalon");
 
-    const contRemeras = document.getElementById("remeras");
-    const contPantalones = document.getElementById("pantalones");
+    contRemeras = document.getElementById("remeras");
+    contPantalones = document.getElementById("pantalones");
 
-    renderizarProductos(remeras, contRemeras);
-    renderizarProductos(pantalones, contPantalones);
+    mostrarPagina();
+
   } catch (err) {
     console.error("Error al cargar productos:", err);
   }
 });
 
-
-// renderizar productos
-
+// --------------------
+// Renderizar productos
+// --------------------
 function renderizarProductos(lista, contenedor) {
+  contenedor.innerHTML = ""; // limpiar antes de renderizar
+
   lista.forEach(p => {
     const div = document.createElement("div");
     div.classList.add("producto");
+
     div.innerHTML = `
       <h3>${p.nombre}</h3>
       <img src="${p.imagen}" width="120">
@@ -40,18 +44,56 @@ function renderizarProductos(lista, contenedor) {
         <button class="btnQuitar" data-id="${p.id}">Quitar del carrito</button>
       </div>
     `;
+
     contenedor.appendChild(div);
   });
-
-
-  contenedor.addEventListener("click", e => {
-    if (e.target.classList.contains("btnAgregar")) {
-      agregarAlCarrito(e.target.dataset.id);
-    } else if (e.target.classList.contains("btnQuitar")) {
-      quitarDelCarrito(e.target.dataset.id);
-    }
-  });
 }
+
+
+let paginaActual = 1;
+const productosPorPagina = 3;
+
+let listaRemeras = [];
+let listaPantalones = [];
+
+let contRemeras = null;
+let contPantalones = null;
+
+
+// Renderiza ambas categorías según la página actual
+function mostrarPagina() {
+  const inicio = (paginaActual - 1) * productosPorPagina;
+  const fin = inicio + productosPorPagina;
+
+  const remerasPagina = listaRemeras.slice(inicio, fin);
+  const pantalonesPagina = listaPantalones.slice(inicio, fin);
+
+  renderizarProductos(remerasPagina, contRemeras);
+  renderizarProductos(pantalonesPagina, contPantalones);
+}
+
+
+
+// ----------- BOTONES -----------
+
+document.getElementById("btnSiguiente").addEventListener("click", () => {
+  const maxPaginasRemeras = Math.ceil(listaRemeras.length / productosPorPagina);
+  const maxPaginasPantalones = Math.ceil(listaPantalones.length / productosPorPagina);
+
+  const maxPaginas = Math.max(maxPaginasRemeras, maxPaginasPantalones);
+
+  if (paginaActual < maxPaginas) {
+    paginaActual++;
+    mostrarPagina();
+  }
+});
+
+document.getElementById("btnAnterior").addEventListener("click", () => {
+  if (paginaActual > 1) {
+    paginaActual--;
+    mostrarPagina();
+  }
+});
 
 
 // sumar producto
@@ -99,24 +141,3 @@ function obtenerProductoDesdeDOM(id) {
   return { id, nombre, precio, imagen };
 }
 
-// const btnTema = document.getElementById("themeToggle");
-// const html = document.documentElement;
-
-// // Cargar tema guardado
-// if (localStorage.getItem("theme") === "dark") {
-//   html.classList.add("dark-theme");
-//   btnTema.textContent = "☀️";
-// }
-
-// // Alternar tema
-// btnTema.addEventListener("click", () => {
-//   html.classList.toggle("dark-theme");
-
-//   if (html.classList.contains("dark-theme")) {
-//     localStorage.setItem("theme", "dark");
-//     btnTema.textContent = "☀️";
-//   } else {
-//     localStorage.setItem("theme", "light");
-//     btnTema.textContent = "🌙";
-//   }
-// });

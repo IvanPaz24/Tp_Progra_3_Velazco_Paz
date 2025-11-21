@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agregar Producto</title>
   <link rel="stylesheet" href="/css/tienda.css">
+  <link rel="stylesheet" href="/css/tema.css">
    <link rel="icon" href="/img/logo.png" type="image/png">
 </head>
 
-    <body>
+<body>
 
     <header class="headerAdmin">
     <div>
@@ -34,32 +35,37 @@
         <% if (error) { %>
             <div class="alert error"><%= error %></div>
         <% } %>
+            <div class="vistaModificar">
 
-            <form action="/productos" method="POST" enctype="multipart/form-data">
-
-                <label>Nombre del producto:</label>
-                <input type="text" name="nombre" required>
-
-                <label>Precio:</label>
-                <input type="number" name="precio" required min="1">
-
-                <label>Imagen:</label>
-                <input type="file" name="imagen" accept="image/*" required>
-
-                <label>Categoría:</label>
-                <select name="categoria" required>
-                <option value="">Seleccione categoría</option>
-                <option value="remera">Remera</option>
-                <option value="pantalon">Pantalón</option>
-                </select>
-
-                <div class="botones-form">
-                <button type="submit" class="btnConfirmar">Agregar</button>
-                <a href="/productos/dashboard" class="btnCancelar">Cancelar</a>
-                </div>
-
-            </form>
+                <form action="/productos" method="POST" enctype="multipart/form-data">
+    
+                    <label>Nombre del producto:</label>
+                    <input type="text" name="nombre" required>
+    
+                    <label>Precio:</label>
+                    <input type="number" name="precio" required min="1">
+    
+                    <label>Imagen:</label>
+                    <input type="file" name="imagen" accept="image/*" required>
+    
+                    <label>Categoría:</label>
+                    <select name="categoria" required>
+                    <option value="">Seleccione categoría</option>
+                    <option value="remera">Remera</option>
+                    <option value="pantalon">Pantalón</option>
+                    </select>
+    
+                    <div class="botones-form">
+                    <button type="submit" class="btnConfirmar">Agregar</button>
+                    <a href="/productos/dashboard" class="btnCancelar">Cancelar</a>
+                    </div>
+    
+                </form>
+            </div>
         </main>
 
-    </body>
+    <button id="themeToggle">🌙</button>
+
+    <script src="../public/js/tema.js"></script>
+</body>
 </html>

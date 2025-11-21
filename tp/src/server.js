@@ -30,8 +30,9 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 // carpeta uploads
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/img/productos", express.static(path.join(__dirname, "uploads")));
-
-
+// carpeta ejs
+// app.use(express.static(path.join(__dirname, "views")));
+// app.use("views", express.static(path.join(__dirname, "views")));
 
 //   Rutas API
 
