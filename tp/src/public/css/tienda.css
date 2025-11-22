@@ -116,7 +116,7 @@ header {
 }
 
 
-#vaciarCarrito:hover #finCompra:hover, #btnSiguiente:hover , #btnAnterior:hover , #Salir:hover {
+#vaciarCarrito:hover, #finCompra:hover, #btnSiguiente:hover , #btnAnterior:hover , #Salir:hover {
   background-color: #005f73;
 } 
 
