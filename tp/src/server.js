@@ -7,7 +7,7 @@ import userRoutes from "./routes/user.routes.js";
 import bcrypt from "bcrypt";
 import methodOverride from "method-override";
 
-// Importar rutas
+// import rutas
 import productosRoutes from "./routes/productosRoutes.js";
 import ticketRoutes from "./routes/ticketRoutes.js";
 import ventasRoutes from "./routes/ventasRouters.js";
@@ -20,21 +20,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
-// Motor de vistas
+// motor vistas
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-// Carpeta pública
+// public
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/public", express.static(path.join(__dirname, "public")));
-// carpeta uploads
+// uploads
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/img/productos", express.static(path.join(__dirname, "uploads")));
-// carpeta ejs
-// app.use(express.static(path.join(__dirname, "views")));
-// app.use("views", express.static(path.join(__dirname, "views")));
 
-//   Rutas API
+
+// rutas de la api
 
 app.use("/productos", productosRoutes);
 app.use("/ticket", ticketRoutes);
@@ -43,13 +41,13 @@ app.use("/ventas", ventasRoutes);
 
 
 //   Rutas HTML 
-// Home (cliente)
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index_cliente.html"));
 });
 
 
-//   Sincronización DB
+//   sincronizar bd
 sequelize.sync({ force: true }).then(async () => {
   console.log("Base sincronizada");
 
@@ -85,7 +83,7 @@ sequelize.sync({ force: true }).then(async () => {
 
 });
 
-//   Abrir navegador
+// abre navegador
 function openUrl(url) {
   const command = process.platform === "win32"
     ? `start "" "${url}"`
@@ -96,7 +94,7 @@ function openUrl(url) {
   exec(command);
 }
 
-//   Servidor
+// server
 app.listen(PORT, () => {
   console.log(`Servidor en http://localhost:${PORT}`);
   openUrl(`http://localhost:${PORT}`);

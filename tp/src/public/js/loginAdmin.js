@@ -17,7 +17,7 @@ document.getElementById("btnIngresar").addEventListener("click", async () => {
     }
 });
 
-// Botón para autocompletar
+// autocompletar admin
 document.getElementById("btnAutocompletar").addEventListener("click", () => {
     document.getElementById("inputCorreo").value = "admin@admin.com";
     document.getElementById("inputPass").value = "admin123";

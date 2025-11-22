@@ -27,7 +27,7 @@ router.post("/", upload.single("imagen"), crearProducto);
 // modificar producto
 router.put("/:id", actualizarProducto);
 
-// baja lógica
+// baja logica
 router.put("/:id/baja", bajaLogicaProducto);
 
 // reactivar

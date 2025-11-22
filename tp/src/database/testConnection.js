@@ -1,4 +1,3 @@
-// src/database/testConnection.js
 import sequelize from "./config.js";
 
 async function testConnection() {

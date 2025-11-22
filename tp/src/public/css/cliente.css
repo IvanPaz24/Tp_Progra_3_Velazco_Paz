@@ -8,8 +8,8 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
+    justify-content: center; 
+    align-items: center; 
     position: relative;
     overflow: hidden;
 }

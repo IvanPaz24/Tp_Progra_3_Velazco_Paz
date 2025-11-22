@@ -10,7 +10,6 @@ let nombreCliente = "";
 export const crearTicket = (req, res) => {
   carritoTemporal = req.body.carrito;
   nombreCliente = req.body.clienteNombre;
-  // console.log(nombreCliente);
 
   res.render("index_ticket", {
     datos: carritoTemporal,

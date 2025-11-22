@@ -5,12 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnCancelar = document.getElementById("btnCancelar");
   const btnConfirmar = document.getElementById("btnConfirmar");
 
-  let accionPendiente = null; // guardará la acción PUT
+  let accionPendiente = null; 
   let productoId = null;
 
-  // Evento global para capturar clicks en los botones
+  //capturar clicks en los botones
   document.body.addEventListener("click", e => {
-    // Dar de baja
+    //baja
     if (e.target.classList.contains("btnBaja")) {
       e.preventDefault();
       
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
       modal.style.display = "flex";
     }
 
-    // Reactivar
+    // reactivar
     if (e.target.classList.contains("btnAlta")) {
       e.preventDefault();
 
@@ -35,14 +35,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Cancelar cierra modal
+  // cancelar
   btnCancelar.addEventListener("click", () => {
     modal.style.display = "none";
     accionPendiente = null;
     productoId = null;
   });
 
-  // Confirmar ejecuta la acción
+  // confirmar
   btnConfirmar.addEventListener("click", async () => {
     if (!accionPendiente || !productoId) return;
 

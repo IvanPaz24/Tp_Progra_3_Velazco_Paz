@@ -1,6 +1,6 @@
 import { Producto } from "../models/Productos.js";
 
-// CLIENTE – SOLO ACTIVOS
+// cliente productos activos
 export const obtenerProductosActivos = async (req, res) => {
   try {
     const productos = await Producto.findAll({
@@ -12,7 +12,7 @@ export const obtenerProductosActivos = async (req, res) => {
   }
 };
 
-// ADMIN – TODOS LOS PRODUCTOS
+// admin todos los productos
 export const obtenerTodosProductos = async (req, res) => {
   try {
     const productos = await Producto.findAll();
@@ -22,7 +22,7 @@ export const obtenerTodosProductos = async (req, res) => {
   }
 };
 
-// ADMIN – MODIFICAR PRODUCTO
+// modificar
 export const actualizarProducto = async (req, res) => {
   try {
     const { id } = req.params;
@@ -35,7 +35,7 @@ export const actualizarProducto = async (req, res) => {
   }
 };
 
-// ADMIN – BAJA LÓGICA
+// dar de baja
 export const bajaLogicaProducto = async (req, res) => {
   try {
     const { id } = req.params;
@@ -51,7 +51,7 @@ export const bajaLogicaProducto = async (req, res) => {
   }
 };
 
-// ADMIN – ALTA LÓGICA
+// dar de alta
 export const activarProducto = async (req, res) => {
   try {
     const { id } = req.params;
@@ -67,12 +67,12 @@ export const activarProducto = async (req, res) => {
   }
 };
 
-// ADMIN – CREAR PRODUCTO
+// crear producto
 export const crearProducto = async (req, res) => {
   try {
     const { nombre, precio, categoria } = req.body;
 
-    // Validaciones
+    // validar
     if (!nombre || !precio || !categoria) {
       return res.render("agregar_producto", {
         error: "Todos los campos son obligatorios",
@@ -80,7 +80,7 @@ export const crearProducto = async (req, res) => {
       });
     }
 
-    // Verificar que haya imagen
+    // verificar imagen
     if (!req.file) {
       return res.render("agregar_producto", {
         error: "Debes subir una imagen",
@@ -88,7 +88,7 @@ export const crearProducto = async (req, res) => {
       });
     }
 
-    // RUTA CORRECTA DE LA IMAGEN EN SERVIDOR
+    // ruta imagen
     const rutaImagen = "/uploads/" + req.file.filename;
 
     await Producto.create({
@@ -137,7 +137,7 @@ export const editarProducto = async (req, res) => {
     const producto = await Producto.findByPk(id);
     if (!producto) return res.send("Producto no encontrado");
 
-    // si subió una nueva imagen → reemplazar
+    // remplaza a la nueva imagen
     let nuevaImagen = producto.imagen;
     if (req.file) {
       nuevaImagen = "/img/productos/" + req.file.filename;

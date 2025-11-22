@@ -1,7 +1,7 @@
 import { User } from "../models/User.js";
 import bcrypt from "bcrypt";
 
-// Crear administrador
+// crear admin
 export const crearAdmin = async (req, res) => {
   try {
     const { correo, contraseña } = req.body;
@@ -20,7 +20,7 @@ export const crearAdmin = async (req, res) => {
   }
 };
 
-// Login administrador
+// login admin
 export const loginAdmin = async (req, res) => {
   try {
     const { correo, contraseña } = req.body;

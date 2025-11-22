@@ -1,11 +1,11 @@
-// Cargar productos del dashboard
+// cargar productos
 fetch("/productos/dashboard")
   .then(res => res.json())
   .then(data => {
     renderizarProductos(data, document.getElementById("contenedorProductos"));
   });
 
-// Render
+// render productos
 function renderizarProductos(lista, contenedor) {
   contenedor.innerHTML = "";
 
@@ -30,11 +30,11 @@ function renderizarProductos(lista, contenedor) {
   });
 }
 
-// Manejo de acciones
+
 document.addEventListener("click", async (e) => {
   const id = e.target.dataset.id;
 
-  // MODIFICAR
+  // modificar
   if (e.target.classList.contains("btnModificar")) {
     const nuevoNombre = prompt("Nuevo nombre:");
     const nuevoPrecio = prompt("Nuevo precio:");
@@ -48,7 +48,7 @@ document.addEventListener("click", async (e) => {
     return location.reload();
   }
 
-  // BAJA LOGICA
+  // baja producto
   if (e.target.classList.contains("btnBaja")) {
     if (!confirm("¿Está seguro de dar de baja este producto?")) return;
 

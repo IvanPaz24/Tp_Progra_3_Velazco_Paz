@@ -1,23 +1,26 @@
-// public/js/carrito.js
-
 document.addEventListener("DOMContentLoaded", () => {
   mostrarCarrito();
 
-  // Listener único para sumar/restar (delegado)
+  // listener sumar o agregar cantidad
   document.getElementById("listaCarrito").addEventListener("click", e => {
     if (e.target.classList.contains("btnSumar")) {
       cambiarCantidad(e.target.dataset.id, 1);
-    } else if (e.target.classList.contains("btnRestar")) {
+    } 
+    else if (e.target.classList.contains("btnRestar")) {
       cambiarCantidad(e.target.dataset.id, -1);
     }
   });
 
-  // Vaciar carrito
+  // vaciar carrito
   document.getElementById("vaciarCarrito").addEventListener("click", () => {
     localStorage.removeItem("carrito");
     mostrarCarrito();
   });
 });
+
+
+
+// mostrar carrito
 
 function mostrarCarrito() {
   const lista = document.getElementById("listaCarrito");
@@ -38,6 +41,7 @@ function mostrarCarrito() {
 
     const div = document.createElement("div");
     div.classList.add("producto");
+
     div.innerHTML = `
       <img src="${p.imagen}" width="100" height="100">
       <h3>${p.nombre}</h3>
@@ -48,11 +52,15 @@ function mostrarCarrito() {
         <button class="btnSumar" data-id="${p.id}">+</button>
       </div>
     `;
+
     lista.appendChild(div);
   });
 
   totalDiv.textContent = `Total: $${total.toFixed(2)}`;
 }
+
+
+// cambiar cantidad
 
 function cambiarCantidad(id, delta) {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -61,81 +69,95 @@ function cambiarCantidad(id, delta) {
   if (!producto) return;
 
   producto.cantidad += delta;
+
   if (producto.cantidad <= 0) {
-    carrito = carrito.filter(p => p.id != id); // eliminar si llega a 0
+    carrito = carrito.filter(p => p.id != id);
   }
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
   mostrarCarrito();
 }
 
-const btn = document.getElementById('finCompra');
+
+
+// verif carrito
 
 function verificarCarrito(carrito) {
-  if (carrito.length === 0) {
-    return false;
-  }
+  return carrito.length > 0;
 }
 
+
+
+// fin compra
+
+const btn = document.getElementById('finCompra');
+
 if (btn) {
-  btn.addEventListener('click', async () => {
+  btn.addEventListener('click', () => {
+    
     const modal = document.getElementById("modalConfirmacion");
     const modalTitulo = document.getElementById("modalTitulo");
     const modalMensaje = document.getElementById("modalMensaje");
     const btnCancelar = document.getElementById("btnCancelar");
     const btnConfirmar = document.getElementById("btnConfirmar");
-    
+
     modalTitulo.textContent = "Confirmar compra";
     modalMensaje.textContent = "¿Está seguro que desea finalizar la compra?";
-    modal.style.display = "flex";  
+    modal.style.display = "flex";
 
-    btnConfirmar.addEventListener("click", async () => {
+    // limpiar listeners viejos
+    btnConfirmar.onclick = null;
+
+    // listener único
+    btnConfirmar.onclick = async () => {
       const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-      const clienteNombre = localStorage.getItem('clienteNombre') || [];
-      
-      if (!verificarCarrito(carrito)){
-        modalMensaje.textContent = "El carrito está vacío. Agregue productos antes de finalizar la compra.";
-        btnConfirmar.addEventListener("click", () => {
-          modal.style.display = "none";
-        });
-        return;
-      };
+      const clienteNombre = localStorage.getItem("clienteNombre") || "Cliente";
 
-      // Envío el carrito al servidor
+      if (!verificarCarrito(carrito)) {
+        modalMensaje.textContent = "El carrito está vacío. Agregue productos antes de finalizar la compra.";
+        
+        btnConfirmar.onclick = () => {
+          modal.style.display = "none";
+        };
+
+        return;
+      }
+
+      // enviar ticket al serv
       const res = await fetch("/ticket", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ carrito , clienteNombre}) // lo enviamos dentro de un objeto
+        body: JSON.stringify({ carrito, clienteNombre })
       });
-    
+
       const html = await res.text();
-      
-      let total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
-    
+
+      // registrar venta
+      const total = carrito.reduce((acc, p) => acc + p.precio * p.cantidad, 0);
+
       await fetch("/ventas", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          nombre: clienteNombre,
-          total
-        })
+        body: JSON.stringify({ nombre: clienteNombre, total })
       });
-    
-      
+
+      // mostrar ticket
       document.open();
       document.write(html);
       document.close();
-  })
-   
-  btnCancelar.addEventListener("click", () => {
-    modal.style.display = "none";
-  });
-    // window.location.href = 'index_.ticket.html';
+    };
+
+    btnCancelar.onclick = () => {
+      modal.style.display = "none";
+    };
+
   });
 }
+
+// salir y limpiar carrito
 
 document.getElementById("Salir").addEventListener("click", () => {
   localStorage.removeItem("carrito");
   localStorage.removeItem("clienteNombre");
-  window.location.href = 'index_cliente.html';
+  window.location.href = "index_cliente.html";
 });

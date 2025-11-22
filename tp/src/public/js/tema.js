@@ -7,13 +7,13 @@ function initTema() {
         return;
     }
 
-    // Cargar tema guardado
+    // cargar tema guardado
     if (localStorage.getItem("theme") === "dark") {
         html.classList.add("dark-theme");
         btnTema.textContent = "☀️";
     }
 
-    // Alternar tema
+    // alternar tema
     btnTema.addEventListener("click", () => {
         console.log("Cambiando tema...");
         
@@ -29,7 +29,7 @@ function initTema() {
     });
 }
 
-// Esperar a que el DOM esté completamente cargado
+// esperar a que el DOM este completamente cargado
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initTema);
 } else {
