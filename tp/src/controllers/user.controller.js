@@ -1,5 +1,6 @@
 import { User } from "../models/User.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 // crear admin
 export const crearAdmin = async (req, res) => {
@@ -36,9 +37,19 @@ export const loginAdmin = async (req, res) => {
     if (!coincide) {
       return res.status(400).json({ mensaje: "Contraseña incorrecta" });
     }
-
-    return res.json({ mensaje: "Acceso permitido" });
-
+    
+    // localStorage.setItem("token", token);
+    const token = jwt.sign({ id: user.id, rol: user.rol }, process.env.JWT_SECRET, {
+      expiresIn: "30s",
+    });
+    
+    // res.json({ mensaje: "Login exitoso", token });
+    // localStorage.setItem("token", token); 
+    return res.json({
+      mensaje: "Acceso permitido",
+      token
+    });
+    
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

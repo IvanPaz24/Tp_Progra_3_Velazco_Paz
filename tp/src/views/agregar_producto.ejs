@@ -37,7 +37,7 @@
         <% } %>
             <div class="vistaModificar">
 
-                <form action="/productos" method="POST" enctype="multipart/form-data">
+                <form id="formProducto" action="/productos" method="POST" enctype="multipart/form-data" headers{ "Authorization": "Bearer " + localStorage.getItem("token")}>
     
                     <label>Nombre del producto:</label>
                     <input type="text" name="nombre" required>
@@ -67,5 +67,6 @@
     <button id="themeToggle">🌙</button>
 
     <script src="../public/js/tema.js"></script>
+    <script src="../public/js/modificar.js"></script>
 </body>
 </html>

@@ -45,13 +45,25 @@ document.addEventListener("DOMContentLoaded", () => {
   // confirmar
   btnConfirmar.addEventListener("click", async () => {
     if (!accionPendiente || !productoId) return;
+    const token = localStorage.getItem("token");
 
     const url = `/productos/${productoId}/${accionPendiente}?_method=PUT`;
 
-    await fetch(url, {
-      method: "POST"
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+      "Authorization": "Bearer " + token
+    }
     });
 
+    if (res.status === 401) {
+      alert("Sesión expirada. Vuelva a iniciar sesión");
+      localStorage.removeItem("token");
+      window.location.href = "/index_cliente.html";
+      return;
+    }
+
     window.location.reload();
+
   });
 });

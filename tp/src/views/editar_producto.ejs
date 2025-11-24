@@ -31,7 +31,7 @@
       <p class="error"><%= error %></p>
     <% } %>
 
-    <form action="/productos/<%= producto.id %>/editar" method="POST" enctype="multipart/form-data" class="formProducto">
+    <form id="formProducto" action="/productos/<%= producto.id %>/editar" method="POST" enctype="multipart/form-data" class="formProducto">
 
       <div class="vistaModificar" >
 
@@ -63,5 +63,6 @@
   <button id="themeToggle">🌙</button>
 
   <script src="/js/tema.js"></script>
+  <script src="/js/modificar.js"></script>
 </body>
 </html>

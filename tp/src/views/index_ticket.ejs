@@ -28,6 +28,7 @@
   
       <% if (datos && datos.length > 0) { %>
         <% let total = 0; %>
+        <img src="<%= logo %>" style="max-width: 100px; height: auto;">
         <h1>Velaz</h1>
         <p><strong>Cliente:</strong> <%= nombreCliente %></p>
   
@@ -41,8 +42,8 @@
   
           <% total += item.precio * item.cantidad; %>
         <% }) %>
-  
-        <div class="divider"></div>
+         
+        <strong>Fecha:</strong> <%= fecha %>
         <h2>Total: $<%= total %></h2>
   
       <% } else { %>
@@ -55,11 +56,11 @@
   
           <button class="btn-salir" id="salirTicket">Salir</button>
         </div>
+        <button id="themeToggle">🌙</button>
       <% } %>
-      </div>
+    </div>
   </main>
   
-  <button id="themeToggle">🌙</button>
 
   <script src="../public/js/ticket.js"></script>
   <script src="../public/js/tema.js"></script>

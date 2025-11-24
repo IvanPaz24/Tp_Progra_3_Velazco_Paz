@@ -135,16 +135,20 @@ if (btn) {
       // registrar venta
       const total = carrito.reduce((acc, p) => acc + p.precio * p.cantidad, 0);
 
-      await fetch("/ventas", {
+      const resVenta = await fetch("/ventas", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nombre: clienteNombre, total })
+        body: JSON.stringify({ nombre: clienteNombre, total, productos: carrito })
       });
 
+    
       // mostrar ticket
-      document.open();
-      document.write(html);
-      document.close();
+    localStorage.removeItem("carrito");
+    document.open();
+    document.write(html);
+    document.close();
+
+
     };
 
     btnCancelar.onclick = () => {

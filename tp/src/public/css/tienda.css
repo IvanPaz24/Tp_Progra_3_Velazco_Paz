@@ -408,3 +408,17 @@ input, select {
   display: block;
   margin: 0 auto 10px auto;
 }
+
+/* #salirProducto {
+    position: fixed !important;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    transition: 0.3s;
+    z-index: 1001 !important;
+} */

@@ -14,13 +14,18 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-#themeToggle {
+#themeToggle, #SalirProducto {
     
 
     position: fixed;
     bottom: 20px;   
-    right: 20px;
     cursor: pointer;
+    
+    
+}
+
+#themeToggle {
+    right: 20px;
     padding: 10px 15px;
     border-radius: 8px;
     background: var(--text-color);
@@ -28,8 +33,18 @@ body {
     border: none;
     transition: 0.3s;
     z-index: 9999; 
+    
+}
 
- 
+#SalirProducto { 
+    left: 20px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    transition: 0.3s;
+    z-index: 1001;
 }
 
 #themeToggle:hover {

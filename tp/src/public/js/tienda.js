@@ -155,3 +155,10 @@ function obtenerProductoDesdeDOM(id) {
     imagen: card.querySelector("img").src
   };
 }
+
+
+document.getElementById("SalirProducto").addEventListener("click", () => {
+  localStorage.removeItem("carrito");
+  localStorage.removeItem("clienteNombre");
+  window.location.href = "index_cliente.html";
+});
