@@ -409,6 +409,14 @@ input, select {
   margin: 0 auto 10px auto;
 }
 
+@media (max-width: 600px) {
+    .botones-form {
+        flex-direction: column;  /* los botones se ponen uno abajo del otro */
+        gap: 10px;               /* separación vertical */
+    }
+}
+
+
 /* #salirProducto {
     position: fixed !important;
     top: 20px;
