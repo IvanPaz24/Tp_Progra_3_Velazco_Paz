@@ -40,7 +40,7 @@ export const loginAdmin = async (req, res) => {
     
     // localStorage.setItem("token", token);
     const token = jwt.sign({ id: user.id, rol: user.rol }, process.env.JWT_SECRET, {
-      expiresIn: "5m",
+      expiresIn: "3m",
     });
     
     // res.json({ mensaje: "Login exitoso", token });
